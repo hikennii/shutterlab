@@ -25,8 +25,11 @@ export async function POST(req) {
     });
 
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Failed" }), {
-      status: 500,
-    });
-  }
+    console.error("REAL ERROR:", err);
+
+    return new Response(
+        JSON.stringify({ error: err.message }),
+        { status: 500 }
+    );
+ }
 }
