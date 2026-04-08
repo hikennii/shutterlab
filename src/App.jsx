@@ -1,4 +1,4 @@
-import { useState} from "react";
+import {useState, useEffect} from "react";
 
 export default function App() {
   const [budget, setBudget] = useState("");
@@ -8,6 +8,7 @@ export default function App() {
   const [manufacturer, setManufacturer] = useState("");
   const [frame, setFrame] = useState("");
   const [features, setFeatures] = useState([]);
+  const [aiPrices, setAiPrices] = useState({});
   const [showResults, setShowResults] = useState(false);
 
   const cameras = [
@@ -91,6 +92,30 @@ export default function App() {
   }
 };
 
+const getAIPrice = async (name) => {
+  try {
+    const res = await fetch("/api/price", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    setAiPrices(prev => ({
+      ...prev,
+      [name]: data.price
+    }));
+
+  } catch (err) {
+    console.error("AI ERROR:", err);
+  }
+};
+
   const results = cameras.filter((cam) => {
   return (
     (budget === "" || cam.price <= budget) &&
@@ -105,6 +130,16 @@ export default function App() {
       features.every((f) => (cam.features || []).includes(f)))  
   );
 });
+
+useEffect(() => {
+  if (!showResults) return;
+
+  results.forEach((cam) => {
+    if (!aiPrices[cam.name]) {
+      getAIPrice(cam.name);
+    }
+  });
+}, [results, showResults]);
 
   return (
     <div>
@@ -207,12 +242,17 @@ export default function App() {
       <button onClick={() => setShowResults(true)}>
         Find Cameras
       </button>
-
+      
       {showResults &&
         results.map((cam, index) => (
           <div key={index}>
             <p>{cam.name}</p>
             <p>Price: ~${cam.price}</p>
+            {aiPrices[cam.name] ? (
+              <p>Estimated Price: {aiPrices[cam.name]}</p>
+            ) : (
+              <p>Estimating price...</p>
+            )}
             <p>ISO: {cam.iso}</p>
             <p>MegaPixel: {cam.mp}</p>
             <a
