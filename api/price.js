@@ -25,7 +25,7 @@ export async function POST(req) {
 
     const searchRes = await fetch(
       `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(
-        name
+        name + " camera body"
       )}&limit=5`,
       {
         headers: {
@@ -37,9 +37,9 @@ export async function POST(req) {
     const searchData = await searchRes.json();
 
     const prices =
-      searchData.itemSummaries?.map((item) =>
-        Number(item.price.value)
-      ) || [];
+      searchData.itemSummaries
+        ?.map((item) => Number(item.price?.value))
+        .filter((p) => !isNaN(p)) || [];
 
     if (prices.length === 0) {
       return new Response(JSON.stringify({ price: "N/A" }));
@@ -52,10 +52,7 @@ export async function POST(req) {
       JSON.stringify({ price: `$${Math.round(avg)}` }),
       { headers: { "Content-Type": "application/json" } }
     );
-
   } catch (err) {
-    console.error("EBAY ERROR:", err);
-
     return new Response(
       JSON.stringify({ error: err.message }),
       { status: 500 }

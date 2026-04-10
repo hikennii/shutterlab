@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const [budget, setBudget] = useState("");
@@ -85,67 +85,73 @@ export default function App() {
   ];
 
   const toggleFeature = (feature) => {
-  if (features.includes(feature)) {
-    setFeatures(features.filter((f) => f !== feature));
-  } else {
-    setFeatures([...features, feature]);
-  }
-};
+    if (features.includes(feature)) {
+      setFeatures(features.filter((f) => f !== feature));
+    } else {
+      setFeatures([...features, feature]);
+    }
+  };
 
-const getEbayPrice = async (name) => {
-  try {
-    const res = await fetch("/api/price", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name }),
-    });
+  const getEbayPrice = async (name) => {
+    try {
+      const res = await fetch("/api/price", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      });
 
-    const data = await res.json();
+      if (!res.ok) {
+        throw new Error("API error");
+      }
 
-    if (data.error) {
+      const data = await res.json();
+
+      if (data.error) {
+        setEbayPrices((prev) => ({
+          ...prev,
+          [name]: "Unavailable",
+        }));
+        return;
+      }
+
       setEbayPrices((prev) => ({
         ...prev,
-        [name]: "Unavailable",
+        [name]: data.price,
       }));
-      return;
+    } catch {
+      setEbayPrices((prev) => ({
+        ...prev,
+        [name]: "N/A",
+      }));
     }
-
-    setEbayPrices((prev) => ({
-      ...prev,
-      [name]: data.price,
-    }));
-
-  } catch (err) {
-    console.error("EBAY FETCH ERROR:", err);
-  }
-};
+  };
 
   const results = cameras.filter((cam) => {
-  return (
-    (budget === "" || cam.price <= budget) &&
-    (useCase === "" ||
-      useCase === "hybrid" ||
-      cam.use.includes(useCase)) &&
-    (minISO === "" || cam.iso >= minISO) &&
-    (minMP === "" || cam.mp >= minMP) &&
-    (frame === "" || cam.frame === frame) &&
-    (manufacturer === "" || cam.manufacturer === manufacturer) &&
-    (features.length === 0 ||
-      features.every((f) => (cam.features || []).includes(f)))  
-  );
-});
-
-useEffect(() => {
-  if (!showResults) return;
-
-  results.slice(0, 2).forEach((cam) => {
-    if (!ebayPrices[cam.name]) {
-      getEbayPrice(cam.name);
-    }
+    return (
+      (budget === "" || cam.price <= budget) &&
+      (useCase === "" ||
+        useCase === "hybrid" ||
+        cam.use.includes(useCase)) &&
+      (minISO === "" || cam.iso >= minISO) &&
+      (minMP === "" || cam.mp >= minMP) &&
+      (frame === "" || cam.frame === frame) &&
+      (manufacturer === "" || cam.manufacturer === manufacturer) &&
+      (features.length === 0 ||
+        features.every((f) => (cam.features || []).includes(f)))
+    );
   });
-}, [results, showResults]);
+
+  useEffect(() => {
+    if (!showResults) return;
+
+    results.slice(0, 2).forEach((cam) => {
+      if (!ebayPrices[cam.name]) {
+        getEbayPrice(cam.name);
+      }
+    });
+  }, [results, showResults]);
 
   return (
     <div>
@@ -213,42 +219,33 @@ useEffect(() => {
       <p>Features:</p>
 
       <label>
-        <input
-          type="checkbox"
-          onChange={() => toggleFeature("log")}
-        />
+        <input type="checkbox" onChange={() => toggleFeature("log")} />
         Log Profile
       </label>
 
       <label>
-        <input
-          type="checkbox"
-          onChange={() => toggleFeature("film")}
-        />
+        <input type="checkbox" onChange={() => toggleFeature("film")} />
         Film Simulation
       </label>
 
       <label>
-        <input
-          type="checkbox"
-          onChange={() => toggleFeature("ibis")}
-        />
+        <input type="checkbox" onChange={() => toggleFeature("ibis")} />
         IBIS
       </label>
 
       <label>
-        <input
-          type="checkbox"
-          onChange={() => toggleFeature("4k")}
-        />
+        <input type="checkbox" onChange={() => toggleFeature("4k")} />
         4K Video
       </label>
-      <br/><br />
+
+      <br /><br />
 
       <button onClick={() => setShowResults(true)}>
         Find Cameras
       </button>
-      <br/><br />
+
+      <br /><br />
+
       {showResults &&
         results.map((cam, index) => (
           <div key={index}>
@@ -262,9 +259,9 @@ useEffect(() => {
             <p>ISO: {cam.iso}</p>
             <p>MegaPixel: {cam.mp}</p>
             <a
-            href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
-            target="_blank"
-            rel="noopener noreferrer"
+              href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               View on eBay
             </a>
