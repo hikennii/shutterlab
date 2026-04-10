@@ -10,6 +10,7 @@ export default function App() {
   const [manufacturer, setManufacturer] = useState("");
   const [frame, setFrame] = useState("");
   const [features, setFeatures] = useState([]);
+  const [ebayImages, setEbayImages] = useState({});
   const [ebayPrices, setEbayPrices] = useState({});
   const [showResults, setShowResults] = useState(false);
 
@@ -31,7 +32,7 @@ export default function App() {
 
   const getEbayPrice = async (name) => {
     try {
-      const res = await fetch("/api/price", {
+      const res = await fetch("/api/ebay", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,15 +51,22 @@ export default function App() {
         }));
         return;
       }
-
       setEbayPrices((prev) => ({
         ...prev,
         [name]: data.price,
+      }));
+      setEbayImages((prev) => ({
+        ...prev,
+        [name]: data.image,
       }));
     } catch {
       setEbayPrices((prev) => ({
         ...prev,
         [name]: "N/A",
+      }));
+      setEbayImages((prev) => ({
+        ...prev,
+        [name]: null,
       }));
     }
   };
@@ -159,6 +167,17 @@ export default function App() {
         results.map((cam, index) => (
           <div key={index}>
             <p>{cam.name}</p>
+            <img
+              src={
+                ebayImages[cam.name] ??
+                "https://via.placeholder.com/150?text=No+Image"
+              }
+              alt={cam.name}
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/150?text=No+Image";
+              }}
+              style={{ width: "150px", borderRadius: "8px" }}
+            />
             {ebayPrices[cam.name] ? (
               <p>Market Price: ~{ebayPrices[cam.name]}</p>
             ) : (

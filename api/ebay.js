@@ -36,20 +36,22 @@ export async function POST(req) {
 
     const searchData = await searchRes.json();
 
-    const prices =
-      searchData.itemSummaries
-        ?.map((item) => Number(item.price?.value))
-        .filter((p) => !isNaN(p)) || [];
+    const items = searchData.itemSummaries || [];
 
-    if (prices.length === 0) {
-      return new Response(JSON.stringify({ price: "N/A" }));
-    }
+    const prices = items
+      .map((item) => Number(item.price?.value))
+      .filter((p) => !isNaN(p));
+
+    const image = items[0]?.image?.imageUrl || null;
 
     const avg =
       prices.reduce((a, b) => a + b, 0) / prices.length;
 
     return new Response(
-      JSON.stringify({ price: `$${Math.round(avg)}` }),
+      JSON.stringify({
+        price: `$${Math.round(avg)}`,
+        image,
+      }),
       { headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
