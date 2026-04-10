@@ -102,7 +102,7 @@ export default function App() {
   useEffect(() => {
     if (!showResults) return;
 
-    results.slice(0, 2).forEach((cam) => {
+    results.forEach((cam) => {
       if (!ebayPrices[cam.name]) {
         getEbayPrice(cam.name);
       }
