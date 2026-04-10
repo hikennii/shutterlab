@@ -178,7 +178,7 @@ export default function App() {
       </select>
 
       <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-5px)"}}>
         <img src={featuresIcon} alt="Features" style={{ width: "50px"}}/>
       <p>Features:</p>
       </div>
