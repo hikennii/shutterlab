@@ -213,6 +213,10 @@ export default function App() {
             ) : (
               <p>Loading price...</p>
             )}
+            <p>ISO: {cam.iso}</p>
+            <p>Megapixels: {cam.mp}</p>
+            <p>Frame: {cam.frame}</p>
+            <p>Use: {cam.use.join(", ")}</p>
             <a
               href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
               target="_blank"
