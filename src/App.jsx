@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 export default function App() {
   const [budget, setBudget] = useState("");
@@ -8,7 +8,7 @@ export default function App() {
   const [manufacturer, setManufacturer] = useState("");
   const [frame, setFrame] = useState("");
   const [features, setFeatures] = useState([]);
-  const [aiPrices, setAiPrices] = useState({});
+  const [ebayPrices, setEbayPrices] = useState({});
   const [showResults, setShowResults] = useState(false);
 
   const cameras = [
@@ -92,11 +92,41 @@ export default function App() {
   }
 };
 
+const getEbayPrice = async (name) => {
+  try {
+    const res = await fetch("/api/price", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      setEbayPrices((prev) => ({
+        ...prev,
+        [name]: "Unavailable",
+      }));
+      return;
+    }
+
+    setEbayPrices((prev) => ({
+      ...prev,
+      [name]: data.price,
+    }));
+
+  } catch (err) {
+    console.error("EBAY FETCH ERROR:", err);
+  }
+};
+
   const results = cameras.filter((cam) => {
   return (
     (budget === "" || cam.price <= budget) &&
     (useCase === "" ||
-      useCase === "both" ||
+      useCase === "hybrid" ||
       cam.use.includes(useCase)) &&
     (minISO === "" || cam.iso >= minISO) &&
     (minMP === "" || cam.mp >= minMP) &&
@@ -106,6 +136,16 @@ export default function App() {
       features.every((f) => (cam.features || []).includes(f)))  
   );
 });
+
+useEffect(() => {
+  if (!showResults) return;
+
+  results.slice(0, 2).forEach((cam) => {
+    if (!ebayPrices[cam.name]) {
+      getEbayPrice(cam.name);
+    }
+  });
+}, [results, showResults]);
 
   return (
     <div>
@@ -126,7 +166,7 @@ export default function App() {
         <option value="">Select use case</option>
         <option value="photo">Photography</option>
         <option value="video">Video</option>
-        <option value="both">Both</option>
+        <option value="hybrid">Hybrid</option>
         <option value="vlog">Vlogging</option>
       </select>
 
@@ -208,12 +248,17 @@ export default function App() {
       <button onClick={() => setShowResults(true)}>
         Find Cameras
       </button>
-      
+      <br/><br />
       {showResults &&
         results.map((cam, index) => (
           <div key={index}>
             <p>{cam.name}</p>
             <p>Price: ~${cam.price}</p>
+            {ebayPrices[cam.name] ? (
+              <p>Market Price: {ebayPrices[cam.name]}</p>
+            ) : (
+              <p>Loading price...</p>
+            )}
             <p>ISO: {cam.iso}</p>
             <p>MegaPixel: {cam.mp}</p>
             <a
