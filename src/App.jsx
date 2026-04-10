@@ -166,6 +166,8 @@ export default function App() {
         onChange={(e) => setBudget(e.target.value)}
       />
 
+      <br /><br />
+
       <p>Use case:</p>
       <select onChange={(e) => setUseCase(e.target.value)}>
         <option value="">Select use case</option>
@@ -175,11 +177,15 @@ export default function App() {
         <option value="Vlog">Vlogging</option>
       </select>
 
-      <br />
+      <br /><br />
+      <p>Minimum ISO:</p>
+      <input type="number" id="minIso" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
+      <br /><br />
+      <p>Minimum Megapixel:</p>
+      <input type="number" id="minMP" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
 
-      <input type="number" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
-      <input type="number" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
-
+      <br /><br />
+      
       <p>Frame:</p>
       <select onChange={(e) => setFrame(e.target.value)}>
         <option value="">Select frame</option>
@@ -189,6 +195,8 @@ export default function App() {
         <option value="1 Inch">1 Inch</option>
       </select>
 
+      <br /><br />
+
       <p>Manufacturer:</p>
       <select onChange={(e) => setManufacturer(e.target.value)}>
         <option value="">Select manufacturer</option>
@@ -197,6 +205,8 @@ export default function App() {
         <option value="Fujifilm">Fujifilm</option>
       </select>
 
+      <br /><br />
+
       <p>Features:</p>
 
       <label><input type="checkbox" onChange={() => toggleFeature("Log")} />Log</label>
@@ -204,7 +214,7 @@ export default function App() {
       <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
       <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
 
-      <br />
+      <br /><br />
 
       <button onClick={() => setShowResults(true)}>Find Cameras</button>
 
