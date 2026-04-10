@@ -14,7 +14,7 @@ export default function App() {
   const cameras = [
     {
       name: "Sony ZV-E10",
-      price: 650,
+      price: ebayPrices[cam.name],
       use: ["vlog"],
       iso: 32000,
       mp: 24.2,
@@ -24,7 +24,7 @@ export default function App() {
     },
     {
       name: "Canon EOS R50",
-      price: 700,
+      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 32000,
       mp: 24.2,
@@ -34,7 +34,7 @@ export default function App() {
     },
     {
       name: "Sony a6400",
-      price: 700,
+      price: ebayPrices[cam.name],
       use: ["photo","video"],
       iso: 32000,
       mp: 24.2,
@@ -44,7 +44,7 @@ export default function App() {
     },
     {
       name: "Sony A7II",
-      price: 675,
+      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 25600,
       mp: 24.3,
@@ -54,7 +54,7 @@ export default function App() {
     },
     {
       name: "Canon EOS R100",
-      price: 500,
+      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 12800,
       mp: 24.1,
@@ -64,7 +64,7 @@ export default function App() {
     },
     {
       name: "Fujifilm X-T3",
-      price: 800,
+      price: ebayPrices[cam.name],
       use: ["photo", "video"],
       iso: 12800,
       mp: 26.1,
@@ -74,7 +74,7 @@ export default function App() {
     },
     {
       name: "Fujifilm X-T2",
-      price: 600,
+      price: ebayPrices[cam.name],
       use: ["photo", "video"],
       iso: 12800,
       mp: 24.3,
@@ -130,7 +130,7 @@ export default function App() {
 
   const results = cameras.filter((cam) => {
     return (
-      (budget === "" || cam.price <= budget) &&
+      (budget === "" || Math.abs(cam.price - budget) <= 200) &&
       (useCase === "" ||
         useCase === "hybrid" ||
         cam.use.includes(useCase)) &&
