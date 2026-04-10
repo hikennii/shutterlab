@@ -14,66 +14,66 @@ export default function App() {
   const cameras = [
     {
       name: "Sony ZV-E10",
-      use: ["vlog"],
+      use: ["Vlog"],
       iso: 32000,
       mp: 24.2,
       frame: "APS-C",
-      manufacturer: "sony",
-      features: ["log", "4k"]
+      manufacturer: "Sony",
+      features: ["Log", "4K"]
     },
     {
       name: "Canon EOS R50",
-      use: ["photo"],
+      use: ["Photo"],
       iso: 32000,
       mp: 24.2,
       frame: "APS-C",
-      manufacturer: "canon",
-      features: ["4k"]
+      manufacturer: "Canon",
+      features: ["4K"]
     },
     {
       name: "Sony a6400",
-      use: ["photo","video"],
+      use: ["Photo","Video"],
       iso: 32000,
       mp: 24.2,
       frame: "APS-C",
-      manufacturer: "sony",
-      features: ["log", "4k"]
+      manufacturer: "Sony",
+      features: ["Log", "4K"]
     },
     {
       name: "Sony A7II",
-      use: ["photo"],
+      use: ["Photo"],
       iso: 25600,
       mp: 24.3,
       frame: "Full Frame",
-      manufacturer: "sony",
-      features: ["ibis", "4k", "log"]
+      manufacturer: "Sony",
+      features: ["IBIS", "4K", "Log"]
     },
     {
       name: "Canon EOS R100",
-      use: ["photo"],
+      use: ["Photo"],
       iso: 12800,
       mp: 24.1,
       frame: "APS-C",
-      manufacturer: "canon",
-      features: ["4k"]
+      manufacturer: "Canon",
+      features: ["4K"]
     },
     {
       name: "Fujifilm X-T3",
-      use: ["photo", "video"],
+      use: ["Photo", "Video"],
       iso: 12800,
       mp: 26.1,
       frame: "APS-C",
-      manufacturer: "fujifilm",
-      features: ["film", "4k", "log"]
+      manufacturer: "Fujifilm",
+      features: ["Film Emulation", "4K", "Log"]
     },
     {
       name: "Fujifilm X-T2",
-      use: ["photo", "video"],
+      use: ["Photo", "Video"],
       iso: 12800,
       mp: 24.3,
       frame: "APS-C",
-      manufacturer: "fujifilm",
-      features: ["film", "4k", "log"]
+      manufacturer: "Fujifilm",
+      features: ["Film Emulation", "4K", "Log"]
     }
   ];
 
@@ -169,11 +169,13 @@ export default function App() {
       <p>Use case:</p>
       <select onChange={(e) => setUseCase(e.target.value)}>
         <option value="">Select use case</option>
-        <option value="photo">Photography</option>
-        <option value="video">Video</option>
-        <option value="hybrid">Hybrid</option>
-        <option value="vlog">Vlogging</option>
+        <option value="Photo">Photography</option>
+        <option value="Video">Video</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Vlog">Vlogging</option>
       </select>
+
+      <br />
 
       <input type="number" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
       <input type="number" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
@@ -190,17 +192,17 @@ export default function App() {
       <p>Manufacturer:</p>
       <select onChange={(e) => setManufacturer(e.target.value)}>
         <option value="">Select manufacturer</option>
-        <option value="sony">Sony</option>
-        <option value="canon">Canon</option>
-        <option value="fujifilm">Fujifilm</option>
+        <option value="Sony">Sony</option>
+        <option value="Canon">Canon</option>
+        <option value="Fujifilm">Fujifilm</option>
       </select>
 
       <p>Features:</p>
 
-      <label><input type="checkbox" onChange={() => toggleFeature("log")} />Log</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("film")} />Film</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("ibis")} />IBIS</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("4k")} />4K</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("Log")} />Log</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("Film Emulation")} />Film Emulation</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
 
       <br />
 
@@ -219,6 +221,8 @@ export default function App() {
             <p>Megapixels: {cam.mp}</p>
             <p>Frame: {cam.frame}</p>
             <p>Use: {cam.use.join(", ")}</p>
+            <p>Features: {cam.features.join(", ")}</p>
+            <p>Manufacturer: {cam.manufacturer}</p>
             <a
               href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
               target="_blank"
