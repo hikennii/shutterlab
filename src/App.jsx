@@ -223,7 +223,7 @@ export default function App() {
           <div key={index}>
             <p>{cam.name}</p>
             {ebayPrices[cam.name] ? (
-              <p>Market Price: {ebayPrices[cam.name]}</p>
+              <p>Market Price: ~{ebayPrices[cam.name]}</p>
             ) : (
               <p>Loading price...</p>
             )}
