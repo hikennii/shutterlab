@@ -102,7 +102,7 @@ export default function App() {
   useEffect(() => {
     if (!showResults) return;
 
-    results.forEach((cam) => {
+    results.slice(0, 10).forEach((cam) => {
       if (!ebayPrices[cam.name]) {
         getEbayPrice(cam.name);
       }
@@ -193,7 +193,7 @@ export default function App() {
           Select your preferences and click "Find Cameras" to see results
         </p>
       ) : (
-        results.map((cam, index) => (
+        results.slice(0,10).map((cam, index) => (
           <div key={index}>
               <p>{cam.name}</p>
               <img
