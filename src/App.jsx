@@ -250,7 +250,6 @@ export default function App() {
         results.map((cam, index) => (
           <div key={index}>
             <p>{cam.name}</p>
-            <p>Price: ~${cam.price}</p>
             {ebayPrices[cam.name] ? (
               <p>Market Price: {ebayPrices[cam.name]}</p>
             ) : (
