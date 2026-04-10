@@ -134,3 +134,16 @@ hr {
   flex: 1;
 }
 
+.findCameras {
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  padding: 5px 8px;
+  background-color: rgb(46, 46, 46);
+  transition: 0.2s ease;
+}
+
+.findCameras:hover {
+  background-color: rgb(70, 70, 70);
+  transform: scale(1.04);
+}

@@ -185,7 +185,7 @@ export default function App() {
           <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
           <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
           <br/><br/>
-          <button onClick={() => setShowResults(true)}>Find Cameras</button>
+          <button className="findCameras" onClick={() => setShowResults(true)}>Find Cameras</button>
         </div>
       <div className="results">
         {!showResults ? (
