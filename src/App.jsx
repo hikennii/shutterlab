@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import cameras from "./data/cameras";
+import fallbackImg from "./assets/fallback.png";
 
 export default function App() {
   const [budget, setBudget] = useState("");
@@ -174,9 +175,9 @@ export default function App() {
               }
               alt={cam.name}
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/150?text=No+Image";
+                e.target.src = fallbackImg;
               }}
-              style={{ width: "150px", borderRadius: "8px" }}
+              style={{ width: "120px", borderRadius: "8px" }}
             />
             {ebayPrices[cam.name] ? (
               <p>Market Price: ~{ebayPrices[cam.name]}</p>
