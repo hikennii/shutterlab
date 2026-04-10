@@ -113,7 +113,7 @@ export default function App() {
   <div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-25px)"}}>
         <img src={logo} alt="Logo" style={{ width: "150px"}}/>
-        <h1>Camera Picker</h1>
+        <h1>ShutterLab</h1>
         </div>
         <div className="layout">
         <div className="sidebar">
