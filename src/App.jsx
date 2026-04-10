@@ -17,7 +17,7 @@ export default function App() {
       use: ["vlog"],
       iso: 32000,
       mp: 24.2,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "sony",
       features: ["log", "4k"]
     },
@@ -26,7 +26,7 @@ export default function App() {
       use: ["photo"],
       iso: 32000,
       mp: 24.2,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "canon",
       features: ["4k"]
     },
@@ -35,7 +35,7 @@ export default function App() {
       use: ["photo","video"],
       iso: 32000,
       mp: 24.2,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "sony",
       features: ["log", "4k"]
     },
@@ -44,7 +44,7 @@ export default function App() {
       use: ["photo"],
       iso: 25600,
       mp: 24.3,
-      frame: "full",
+      frame: "Full Frame",
       manufacturer: "sony",
       features: ["ibis", "4k", "log"]
     },
@@ -53,7 +53,7 @@ export default function App() {
       use: ["photo"],
       iso: 12800,
       mp: 24.1,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "canon",
       features: ["4k"]
     },
@@ -62,7 +62,7 @@ export default function App() {
       use: ["photo", "video"],
       iso: 12800,
       mp: 26.1,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "fujifilm",
       features: ["film", "4k", "log"]
     },
@@ -71,7 +71,7 @@ export default function App() {
       use: ["photo", "video"],
       iso: 12800,
       mp: 24.3,
-      frame: "apsc",
+      frame: "APS-C",
       manufacturer: "fujifilm",
       features: ["film", "4k", "log"]
     }
@@ -181,10 +181,10 @@ export default function App() {
       <p>Frame:</p>
       <select onChange={(e) => setFrame(e.target.value)}>
         <option value="">Select frame</option>
-        <option value="full">Full Frame</option>
-        <option value="apsc">APS-C</option>
-        <option value="mft">Micro Four Thirds</option>
-        <option value="1inch">1 Inch</option>
+        <option value="Full Frame">Full Frame</option>
+        <option value="APS-C">APS-C</option>
+        <option value="Micro Four Thirds">Micro Four Thirds</option>
+        <option value="1 Inch">1 Inch</option>
       </select>
 
       <p>Manufacturer:</p>
@@ -201,6 +201,8 @@ export default function App() {
       <label><input type="checkbox" onChange={() => toggleFeature("film")} />Film</label>
       <label><input type="checkbox" onChange={() => toggleFeature("ibis")} />IBIS</label>
       <label><input type="checkbox" onChange={() => toggleFeature("4k")} />4K</label>
+
+      <br />
 
       <button onClick={() => setShowResults(true)}>Find Cameras</button>
 
