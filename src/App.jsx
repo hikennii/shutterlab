@@ -110,124 +110,127 @@ export default function App() {
   }, [results, showResults]);
 
   return (
-    <div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-25px)"}}>
+  <div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-25px)"}}>
         <img src={logo} alt="Logo" style={{ width: "150px"}}/>
         <h1>Camera Picker</h1>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)" }}>
-        <img src={budgetIcon} alt="Budget" style={{ width: "50px"}}/>
-        <p>Budget:</p>
-      </div>
-      <input
-        type="number"
-        value={budget}
-        onChange={(e) => setBudget(e.target.value)}
-      />
+        </div>
+        <div className="layout">
+        <div className="sidebar">
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)" }}>
+            <img src={budgetIcon} alt="Budget" style={{ width: "50px"}}/>
+            <p>Budget:</p>
+          </div>
+          <input
+            type="number"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+          />
 
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
-        <img src={usecaseIcon} alt="Use case" style={{ width: "50px"}}/>
-        <p>Use case:</p>
-      </div>
-      <select onChange={(e) => setUseCase(e.target.value)}>
-        <option value="">Select use case</option>
-        <option value="Photo">Photography</option>
-        <option value="Video">Video</option>
-        <option value="Hybrid">Hybrid</option>
-        <option value="Vlog">Vlogging</option>
-      </select>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+            <img src={usecaseIcon} alt="Use case" style={{ width: "50px"}}/>
+            <p>Use case:</p>
+          </div>
+          <select onChange={(e) => setUseCase(e.target.value)}>
+            <option value="">Select use case</option>
+            <option value="Photo">Photography</option>
+            <option value="Video">Video</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Vlog">Vlogging</option>
+          </select>
 
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
-        <img src={isoIcon} alt="ISO" style={{ width: "50px"}}/>
-        <p>Minimum ISO:</p>
-      </div>
-      <input type="number" id="minIso" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
-        <img src={mpIcon} alt="Megapixel" style={{ width: "50px"}}/>
-        <p>Minimum Megapixel:</p>
-      </div>
-      <input type="number" id="minMP" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+            <img src={isoIcon} alt="ISO" style={{ width: "50px"}}/>
+            <p>Minimum ISO:</p>
+          </div>
+          <input type="number" id="minIso" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
 
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
-        <img src={frameIcon} alt="Frame" style={{ width: "50px"}}/>
-        <p>Frame:</p>
-      </div>
-      <select onChange={(e) => setFrame(e.target.value)}>
-        <option value="">Select frame</option>
-        <option value="Full Frame">Full Frame</option>
-        <option value="APS-C">APS-C</option>
-        <option value="Micro Four Thirds">Micro Four Thirds</option>
-        <option value="1 Inch">1 Inch</option>
-      </select>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+            <img src={mpIcon} alt="Megapixel" style={{ width: "50px"}}/>
+            <p>Minimum Megapixel:</p>
+          </div>
+          <input type="number" id="minMP" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
 
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
-        <img src={manufacturerIcon} alt="Manufacturer" style={{ width: "50px"}}/>
-        <p>Manufacturer:</p>
-      </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+            <img src={frameIcon} alt="Frame" style={{ width: "50px"}}/>
+            <p>Frame:</p>
+          </div>
+          <select onChange={(e) => setFrame(e.target.value)}>
+            <option value="">Select frame</option>
+            <option value="Full Frame">Full Frame</option>
+            <option value="APS-C">APS-C</option>
+            <option value="Micro Four Thirds">Micro Four Thirds</option>
+            <option value="1 Inch">1 Inch</option>
+          </select>
 
-      <select onChange={(e) => setManufacturer(e.target.value)}>
-        <option value="">Select manufacturer</option>
-        <option value="Sony">Sony</option>
-        <option value="Canon">Canon</option>
-        <option value="Fujifilm">Fujifilm</option>
-      </select>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+            <img src={manufacturerIcon} alt="Manufacturer" style={{ width: "50px"}}/>
+            <p>Manufacturer:</p>
+          </div>
 
-      <br /><br />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-5px)"}}>
-        <img src={featuresIcon} alt="Features" style={{ width: "50px"}}/>
-      <p>Features:</p>
-      </div>
+          <select onChange={(e) => setManufacturer(e.target.value)}>
+            <option value="">Select manufacturer</option>
+            <option value="Sony">Sony</option>
+            <option value="Canon">Canon</option>
+            <option value="Fujifilm">Fujifilm</option>
+          </select>
 
-      <label><input type="checkbox" onChange={() => toggleFeature("Log")} />Log</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("Film Emulation")} />Film Emulation</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
-      <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-5px)"}}>
+            <img src={featuresIcon} alt="Features" style={{ width: "50px"}}/>
+          <p>Features:</p>
+          </div>
 
-      <br /><br />
-
-      <button onClick={() => setShowResults(true)}>Find Cameras</button>
-
-      {showResults &&
+          <label><input type="checkbox" onChange={() => toggleFeature("Log")} />Log</label>
+          <label><input type="checkbox" onChange={() => toggleFeature("Film Emulation")} />Film Emulation</label>
+          <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
+          <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
+          <br/><br/>
+          <button onClick={() => setShowResults(true)}>Find Cameras</button>
+        </div>
+      <div className="results">
+        {!showResults ? (
+        <p style={{ textAlign: "center", marginTop: "250px", color: "#777"}}>
+          Select your preferences and click "Find Cameras" to see results
+        </p>
+      ) : (
         results.map((cam, index) => (
           <div key={index}>
-            <p>{cam.name}</p>
-            <img
-              src={
-                ebayImages[cam.name] ??
-                fallbackImg
-              }
-              alt={cam.name}
-              onError={(e) => {
-                e.target.src = fallbackImg;
-              }}
-              style={{ width: "120px", borderRadius: "8px" }}
-            />
-            {ebayPrices[cam.name] ? (
-              <p>Market Price: ~{ebayPrices[cam.name]}</p>
-            ) : (
-              <p>Loading price...</p>
-            )}
-            <p>ISO: {cam.iso}</p>
-            <p>Megapixels: {cam.mp}</p>
-            <p>Frame: {cam.frame}</p>
-            <p>Use: {cam.use.join(", ")}</p>
-            <p>Features: {cam.features.join(", ")}</p>
-            <p>Manufacturer: {cam.manufacturer}</p>
-            <a
-              href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on eBay
-            </a>
-            <hr />
+              <p>{cam.name}</p>
+              <img
+                src={
+                  ebayImages[cam.name] ??
+                  fallbackImg
+                }
+                alt={cam.name}
+                onError={(e) => {
+                  e.target.src = fallbackImg;
+                }}
+                style={{ width: "120px", borderRadius: "8px" }}
+              />
+              {ebayPrices[cam.name] ? (
+                <p>Market Price: ~{ebayPrices[cam.name]}</p>
+              ) : (
+                <p>Loading price...</p>
+              )}
+              <p>ISO: {cam.iso}</p>
+              <p>Megapixels: {cam.mp}</p>
+              <p>Frame: {cam.frame}</p>
+              <p>Use: {cam.use.join(", ")}</p>
+              <p>Features: {cam.features.join(", ")}</p>
+              <p>Manufacturer: {cam.manufacturer}</p>
+              <a
+                href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on eBay
+              </a>
+              <hr />
           </div>
-        ))}
+          ))
+        )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -118,3 +118,19 @@ hr {
   border-color: black;
   opacity: 30%;
 }
+
+.layout {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  border-right: 1px solid rgb(44, 44, 44);
+  padding-right: 15px;
+}
+
+.results {
+  flex: 1;
+}
+
