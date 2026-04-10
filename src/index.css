@@ -55,7 +55,6 @@ body {
 }
 
 #root {
-  width: 1126px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -112,5 +111,10 @@ code {
 
 #minIso, #minMP {
   width: 79px;    
-  font-size: 10px;  /* text size inside */
+  font-size: 10px; 
+}
+
+hr {
+  border-color: black;
+  opacity: 30%;
 }
