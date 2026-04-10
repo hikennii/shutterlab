@@ -14,7 +14,6 @@ export default function App() {
   const cameras = [
     {
       name: "Sony ZV-E10",
-      price: ebayPrices[cam.name],
       use: ["vlog"],
       iso: 32000,
       mp: 24.2,
@@ -24,7 +23,6 @@ export default function App() {
     },
     {
       name: "Canon EOS R50",
-      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 32000,
       mp: 24.2,
@@ -34,7 +32,6 @@ export default function App() {
     },
     {
       name: "Sony a6400",
-      price: ebayPrices[cam.name],
       use: ["photo","video"],
       iso: 32000,
       mp: 24.2,
@@ -44,7 +41,6 @@ export default function App() {
     },
     {
       name: "Sony A7II",
-      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 25600,
       mp: 24.3,
@@ -54,7 +50,6 @@ export default function App() {
     },
     {
       name: "Canon EOS R100",
-      price: ebayPrices[cam.name],
       use: ["photo"],
       iso: 12800,
       mp: 24.1,
@@ -64,7 +59,6 @@ export default function App() {
     },
     {
       name: "Fujifilm X-T3",
-      price: ebayPrices[cam.name],
       use: ["photo", "video"],
       iso: 12800,
       mp: 26.1,
@@ -74,7 +68,6 @@ export default function App() {
     },
     {
       name: "Fujifilm X-T2",
-      price: ebayPrices[cam.name],
       use: ["photo", "video"],
       iso: 12800,
       mp: 24.3,
@@ -92,6 +85,13 @@ export default function App() {
     }
   };
 
+  const getEbayPriceNumber = (cam) => {
+    const raw = ebayPrices[cam.name];
+    if (!raw || raw === "N/A" || raw === "Unavailable") return null;
+    const num = Number(raw.replace(/[^0-9]/g, ""));
+    return isNaN(num) ? null : num;
+  };
+
   const getEbayPrice = async (name) => {
     try {
       const res = await fetch("/api/price", {
@@ -102,9 +102,7 @@ export default function App() {
         body: JSON.stringify({ name }),
       });
 
-      if (!res.ok) {
-        throw new Error("API error");
-      }
+      if (!res.ok) throw new Error();
 
       const data = await res.json();
 
@@ -129,8 +127,12 @@ export default function App() {
   };
 
   const results = cameras.filter((cam) => {
+    const price = getEbayPriceNumber(cam);
+
     return (
-      (budget === "" || Math.abs(cam.price - budget) <= 200) &&
+      (budget === "" ||
+        price === null ||
+        Math.abs(price - Number(budget)) <= 200) &&
       (useCase === "" ||
         useCase === "hybrid" ||
         cam.use.includes(useCase)) &&
@@ -160,12 +162,9 @@ export default function App() {
       <p>Budget:</p>
       <input
         type="number"
-        placeholder="Enter your budget"
         value={budget}
         onChange={(e) => setBudget(e.target.value)}
       />
-
-      <br /><br />
 
       <p>Use case:</p>
       <select onChange={(e) => setUseCase(e.target.value)}>
@@ -176,21 +175,8 @@ export default function App() {
         <option value="vlog">Vlogging</option>
       </select>
 
-      <br /><br />
-
-      <input
-        type="number"
-        placeholder="Min ISO"
-        onChange={(e) => setMinISO(e.target.value)}
-      />
-
-      <input
-        type="number"
-        placeholder="Min Megapixel"
-        onChange={(e) => setMinMP(e.target.value)}
-      />
-
-      <br /><br />
+      <input type="number" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
+      <input type="number" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
 
       <p>Frame:</p>
       <select onChange={(e) => setFrame(e.target.value)}>
@@ -201,50 +187,22 @@ export default function App() {
         <option value="1inch">1 Inch</option>
       </select>
 
-      <br /><br />
-
       <p>Manufacturer:</p>
       <select onChange={(e) => setManufacturer(e.target.value)}>
         <option value="">Select manufacturer</option>
         <option value="sony">Sony</option>
         <option value="canon">Canon</option>
         <option value="fujifilm">Fujifilm</option>
-        <option value="nikon">Nikon</option>
-        <option value="panasonic">Panasonic</option>
-        <option value="olympus">Olympus</option>
-        <option value="leica">Leica</option>
-        <option value="pentax">Pentax</option>
       </select>
 
       <p>Features:</p>
 
-      <label>
-        <input type="checkbox" onChange={() => toggleFeature("log")} />
-        Log Profile
-      </label>
+      <label><input type="checkbox" onChange={() => toggleFeature("log")} />Log</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("film")} />Film</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("ibis")} />IBIS</label>
+      <label><input type="checkbox" onChange={() => toggleFeature("4k")} />4K</label>
 
-      <label>
-        <input type="checkbox" onChange={() => toggleFeature("film")} />
-        Film Simulation
-      </label>
-
-      <label>
-        <input type="checkbox" onChange={() => toggleFeature("ibis")} />
-        IBIS
-      </label>
-
-      <label>
-        <input type="checkbox" onChange={() => toggleFeature("4k")} />
-        4K Video
-      </label>
-
-      <br /><br />
-
-      <button onClick={() => setShowResults(true)}>
-        Find Cameras
-      </button>
-
-      <br /><br />
+      <button onClick={() => setShowResults(true)}>Find Cameras</button>
 
       {showResults &&
         results.map((cam, index) => (
@@ -255,8 +213,6 @@ export default function App() {
             ) : (
               <p>Loading price...</p>
             )}
-            <p>ISO: {cam.iso}</p>
-            <p>MegaPixel: {cam.mp}</p>
             <a
               href={`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(cam.name)}`}
               target="_blank"
