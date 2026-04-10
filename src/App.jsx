@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 
 import cameras from "./data/cameras";
 import fallbackImg from "./assets/fallback.png";
+import logo from "./assets/logo.png";
+import budgetIcon from "./assets/budget.png";
+import usecaseIcon from "./assets/usecase.png";
+import isoIcon from "./assets/iso.png";
+import mpIcon from "./assets/megapixel.png";
+import frameIcon from "./assets/frame.png";
+import manufacturerIcon from "./assets/manufacturer.png";
+import featuresIcon from "./assets/feature.png";
 
 export default function App() {
   const [budget, setBudget] = useState("");
@@ -103,9 +111,14 @@ export default function App() {
 
   return (
     <div>
-      <h1>Camera Picker</h1>
-
-      <p>Budget:</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-25px)"}}>
+        <img src={logo} alt="Logo" style={{ width: "150px"}}/>
+        <h1>Camera Picker</h1>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)" }}>
+        <img src={budgetIcon} alt="Budget" style={{ width: "50px"}}/>
+        <p>Budget:</p>
+      </div>
       <input
         type="number"
         value={budget}
@@ -113,8 +126,10 @@ export default function App() {
       />
 
       <br /><br />
-
-      <p>Use case:</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={usecaseIcon} alt="Use case" style={{ width: "50px"}}/>
+        <p>Use case:</p>
+      </div>
       <select onChange={(e) => setUseCase(e.target.value)}>
         <option value="">Select use case</option>
         <option value="Photo">Photography</option>
@@ -124,15 +139,23 @@ export default function App() {
       </select>
 
       <br /><br />
-      <p>Minimum ISO:</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={isoIcon} alt="ISO" style={{ width: "50px"}}/>
+        <p>Minimum ISO:</p>
+      </div>
       <input type="number" id="minIso" placeholder="Min ISO" onChange={(e) => setMinISO(e.target.value)} />
       <br /><br />
-      <p>Minimum Megapixel:</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={mpIcon} alt="Megapixel" style={{ width: "50px"}}/>
+        <p>Minimum Megapixel:</p>
+      </div>
       <input type="number" id="minMP" placeholder="Min Megapixel" onChange={(e) => setMinMP(e.target.value)} />
 
       <br /><br />
-      
-      <p>Frame:</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={frameIcon} alt="Frame" style={{ width: "50px"}}/>
+        <p>Frame:</p>
+      </div>
       <select onChange={(e) => setFrame(e.target.value)}>
         <option value="">Select frame</option>
         <option value="Full Frame">Full Frame</option>
@@ -142,8 +165,11 @@ export default function App() {
       </select>
 
       <br /><br />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={manufacturerIcon} alt="Manufacturer" style={{ width: "50px"}}/>
+        <p>Manufacturer:</p>
+      </div>
 
-      <p>Manufacturer:</p>
       <select onChange={(e) => setManufacturer(e.target.value)}>
         <option value="">Select manufacturer</option>
         <option value="Sony">Sony</option>
@@ -152,8 +178,10 @@ export default function App() {
       </select>
 
       <br /><br />
-
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
+        <img src={featuresIcon} alt="Features" style={{ width: "50px"}}/>
       <p>Features:</p>
+      </div>
 
       <label><input type="checkbox" onChange={() => toggleFeature("Log")} />Log</label>
       <label><input type="checkbox" onChange={() => toggleFeature("Film Emulation")} />Film Emulation</label>
@@ -171,7 +199,7 @@ export default function App() {
             <img
               src={
                 ebayImages[cam.name] ??
-                "https://via.placeholder.com/150?text=No+Image"
+                fallbackImg
               }
               alt={cam.name}
               onError={(e) => {
