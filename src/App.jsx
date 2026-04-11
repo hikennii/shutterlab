@@ -86,7 +86,7 @@ export default function App() {
     return (
       (budget === "" ||
         price === null ||
-        Math.abs(price - Number(budget)) <= 200) &&
+        Math.abs(price - Number(budget)) <= 150) &&
       (useCase === "" ||
         useCase === "Photo & Video" &&
         cam.use.includes("Photo") && cam.use.includes("Video")) &&
