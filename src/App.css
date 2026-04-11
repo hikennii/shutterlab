@@ -182,3 +182,18 @@
     border-right-color: var(--border);
   }
 }
+
+.rc-slider {
+  width: 70%;
+  margin: 0 auto;
+}
+.rc-slider-rail {
+  background-color: rgb(41, 41, 41);
+}
+.rc-slider-track {
+  background-color: grey;
+}
+.rc-slider-handle {
+  background-color: white;
+  border: none;
+}

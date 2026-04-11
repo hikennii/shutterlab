@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 
+import "rc-slider/assets/index.css";
+import "./App.css";
+
+import Slider from "rc-slider";
+
 import cameras from "./data/cameras";
 import fallbackImg from "./assets/fallback.png";
 import logo from "./assets/logo.png";
@@ -12,7 +17,8 @@ import manufacturerIcon from "./assets/manufacturer.png";
 import featuresIcon from "./assets/feature.png";
 
 export default function App() {
-  const [budget, setBudget] = useState("");
+  const [minBudget, setMinBudget] = useState(0);
+  const [maxBudget, setMaxBudget] = useState(3000);
   const [useCase, setUseCase] = useState("");
   const [minISO, setMinISO] = useState("");
   const [minMP, setMinMP] = useState("");
@@ -84,9 +90,8 @@ export default function App() {
     const price = getEbayPriceNumber(cam);
 
     return (
-      (budget === "" ||
-        price === null ||
-        Math.abs(price - Number(budget)) <= 150) &&
+      (price === null ||
+        (price >= minBudget && price <= maxBudget)) &&
       (useCase === "" ||
         useCase === "Photo & Video" &&
         cam.use.includes("Photo") && cam.use.includes("Video")) &&
@@ -121,11 +126,18 @@ export default function App() {
           <img src={budgetIcon} alt="Budget" style={{ width: "50px"}}/>
           <p>Budget:</p>
         </div>
-        <input
-          type="number"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
+        <Slider
+          range
+          allowCross={false}
+          min={0}
+          max={3000}
+          value={[minBudget, maxBudget]}
+          onChange={([min, max]) => {
+            setMinBudget(min);
+            setMaxBudget(max);
+          }}
         />
+        <p>${minBudget} - ${maxBudget}</p>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", transform: "translateX(-10px)"}}>
           <img src={usecaseIcon} alt="Use case" style={{ width: "50px"}}/>
