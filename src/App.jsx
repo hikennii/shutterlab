@@ -88,8 +88,8 @@ export default function App() {
         price === null ||
         Math.abs(price - Number(budget)) <= 200) &&
       (useCase === "" ||
-        useCase === "hybrid" ||
-        cam.use.includes(useCase)) &&
+        useCase === "Photo & Video" &&
+        cam.use.includes("Photo") && cam.use.includes("Video")) &&
       (minISO === "" || cam.iso >= minISO) &&
       (minMP === "" || cam.mp >= minMP) &&
       (frame === "" || cam.frame === frame) &&
@@ -135,7 +135,7 @@ export default function App() {
           <option value="">Select use case</option>
           <option value="Photo">Photography</option>
           <option value="Video">Video</option>
-          <option value="Hybrid">Hybrid</option>
+          <option value="Photo & Video">Photo & Video</option>
           <option value="Vlog">Vlogging</option>
         </select>
 
