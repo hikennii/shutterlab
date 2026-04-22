@@ -199,6 +199,7 @@ export default function App() {
         <label><input type="checkbox" onChange={() => toggleFeature("Film Emulation")} />Film Emulation</label>
         <label><input type="checkbox" onChange={() => toggleFeature("IBIS")} />IBIS</label>
         <label><input type="checkbox" onChange={() => toggleFeature("4K")} />4K</label>
+        <label><input type="checkbox" onChange={() => toggleFeature("Dual SD Card Slots")} />Dual SD Card Slots</label>
         <br/><br/>
         <button className="findCameras" onClick={() => setShowResults(true)}>Find Cameras</button>
       </div>

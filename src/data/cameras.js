@@ -51,7 +51,7 @@ const cameras = [
       mp: 26.1,
       frame: "APS-C",
       manufacturer: "Fujifilm",
-      features: ["Film Emulation", "4K", "Log"]
+      features: ["Film Emulation", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Fujifilm X-T2",
@@ -60,7 +60,7 @@ const cameras = [
       mp: 24.3,
       frame: "APS-C",
       manufacturer: "Fujifilm",
-      features: ["Film Emulation", "4K", "Log"]
+      features: ["Film Emulation", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Sony A7C",
@@ -78,7 +78,7 @@ const cameras = [
       mp: 33,
       frame: "Full Frame",
       manufacturer: "Sony",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Sony A6600",
@@ -123,7 +123,7 @@ const cameras = [
       mp: 32.5,
       frame: "APS-C",
       manufacturer: "Canon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Canon EOS R10",
@@ -141,7 +141,7 @@ const cameras = [
       mp: 45,
       frame: "Full Frame",
       manufacturer: "Canon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Canon EOS R6 Mark II",
@@ -150,7 +150,7 @@ const cameras = [
       mp: 24.2,
       frame: "Full Frame",
       manufacturer: "Canon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Canon EOS M50 Mark II",
@@ -186,7 +186,7 @@ const cameras = [
       mp: 40.2,
       frame: "APS-C",
       manufacturer: "Fujifilm",
-      features: ["IBIS", "Film Emulation", "4K"]
+      features: ["IBIS", "Film Emulation", "4K", "Dual SD Card Slots"]
     },
     {
       name: "Fujifilm X-H2S",
@@ -195,9 +195,8 @@ const cameras = [
       mp: 26.1,
       frame: "APS-C",
       manufacturer: "Fujifilm",
-      features: ["IBIS", "Film Emulation", "4K", "Log"]
+      features: ["IBIS", "Film Emulation", "4K", "Log", "Dual SD Card Slots"]
     },
-
     {
       name: "Nikon Z30",
       use: ["Vlog"],
@@ -223,7 +222,7 @@ const cameras = [
       mp: 45.7,
       frame: "Full Frame",
       manufacturer: "Nikon",
-      features: ["IBIS", "4K"]
+      features: ["IBIS", "4K", "Dual SD Card Slots"]
     },
     {
       name: "Nikon Z8",
@@ -232,9 +231,8 @@ const cameras = [
       mp: 45.7,
       frame: "Full Frame",
       manufacturer: "Nikon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
-
     {
       name: "Panasonic Lumix S5",
       use: ["Photo", "Video"],
@@ -242,7 +240,7 @@ const cameras = [
       mp: 24.2,
       frame: "Full Frame",
       manufacturer: "Panasonic",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Panasonic Lumix S5 II",
@@ -251,7 +249,7 @@ const cameras = [
       mp: 24.2,
       frame: "Full Frame",
       manufacturer: "Panasonic",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Panasonic G85",
@@ -269,7 +267,7 @@ const cameras = [
       mp: 20.3,
       frame: "Micro Four Thirds",
       manufacturer: "Panasonic",
-      features: ["IBIS", "4K"]
+      features: ["IBIS", "4K", "Dual SD Card Slots"]
     },
     {
       name: "Canon EOS R8",
@@ -305,7 +303,7 @@ const cameras = [
       mp: 24.1,
       frame: "Full Frame",
       manufacturer: "Canon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     },
     {
       name: "Canon EOS R5 C",
@@ -323,8 +321,8 @@ const cameras = [
       mp: 32.5,
       frame: "APS-C",
       manufacturer: "Canon",
-      features: ["IBIS", "4K", "Log"]
+      features: ["IBIS", "4K", "Log", "Dual SD Card Slots"]
     }
-      ];
+];
 
 export default cameras;
