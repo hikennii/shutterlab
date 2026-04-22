@@ -270,6 +270,51 @@ const cameras = [
       frame: "Micro Four Thirds",
       manufacturer: "Panasonic",
       features: ["IBIS", "4K"]
+    },
+    {
+      name: "Canon EOS R8",
+      use: ["Photo", "Video"],
+      iso: 102400,
+      mp: 24.2,
+      frame: "Full Frame",
+      manufacturer: "Canon",
+      features: ["4K", "Log"]
+    },
+    {
+      name: "Canon EOS RP",
+      use: ["Photo"],
+      iso: 40000,
+      mp: 26.2,
+      frame: "Full Frame",
+      manufacturer: "Canon",
+      features: ["4K"]
+    },
+    {
+      name: "Canon EOS R",
+      use: ["Photo", "Video"],
+      iso: 40000,
+      mp: 30.3,
+      frame: "Full Frame",
+      manufacturer: "Canon",
+      features: ["4K", "Log"]
+    },
+    {
+      name: "Canon EOS R3",
+      use: ["Photo", "Video"],
+      iso: 102400,
+      mp: 24.1,
+      frame: "Full Frame",
+      manufacturer: "Canon",
+      features: ["IBIS", "4K", "Log"]
+    },
+    {
+      name: "Canon EOS R5 C",
+      use: ["Video"],
+      iso: 102400,
+      mp: 45,
+      frame: "Full Frame",
+      manufacturer: "Canon",
+      features: ["8K", "Log"]
     }
       ];
 

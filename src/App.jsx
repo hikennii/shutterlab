@@ -93,8 +93,11 @@ export default function App() {
       (price === null ||
         (price >= minBudget && price <= maxBudget)) &&
       (useCase === "" ||
+        ((useCase === "Photo" || useCase === "Video" || useCase === "Vlog") && cam.use.includes(useCase)) ||
         useCase === "Photo & Video" &&
-        cam.use.includes("Photo") && cam.use.includes("Video")) &&
+        cam.use.includes("Photo") && cam.use.includes("Video"))
+        
+        &&
       (minISO === "" || cam.iso >= minISO) &&
       (minMP === "" || cam.mp >= minMP) &&
       (frame === "" || cam.frame === frame) &&
