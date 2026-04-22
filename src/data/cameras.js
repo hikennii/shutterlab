@@ -315,6 +315,15 @@ const cameras = [
       frame: "Full Frame",
       manufacturer: "Canon",
       features: ["8K", "Log"]
+    },
+    {
+      name: "Canon EOS R7",
+      use: ["Photo", "Video"],
+      iso: 32000,
+      mp: 32.5,
+      frame: "APS-C",
+      manufacturer: "Canon",
+      features: ["IBIS", "4K", "Log"]
     }
       ];
 
